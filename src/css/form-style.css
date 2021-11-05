@@ -1,0 +1,37 @@
+body {
+  background-color: grey;
+  margin: 10px;
+}
+
+.form-style {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.form-style label {
+  margin: 15px;
+}
+
+.form-style input, textarea, select {
+  width: 98%;
+}
+
+.area-check label {
+  margin-left: 0;
+}
+
+.area-check input {
+  width: 10%;
+}
+
+select {
+  width: 100%;
+}
+
+button {
+  align-self: center;
+  margin-top: 10px;
+  width: 92%;
+}

@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-/**
-  cardName, uma string;
-  cardDescription, uma string;
-  cardAttr1, uma string;
-  cardAttr2, uma string;
-  cardAttr3, uma string;
-  cardImage, uma string;
-  cardRare, uma string;
-  cardTrunfo, um boolean;
- */
-
 class Card extends Component {
   render() {
     const {
@@ -42,7 +31,7 @@ class Card extends Component {
         <p data-testid="attr3-card">{ cardAttr3 }</p>
         <p data-testid="rare-card">{cardRare}</p>
         {
-          cardTrunfo ? <p data-testid="trunfo-card"> Super Trunfo </p> : <p> erro </p>
+          cardTrunfo && <p data-testid="trunfo-card"> Super Trunfo </p>
         }
       </div>
     );

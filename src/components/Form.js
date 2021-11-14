@@ -15,6 +15,7 @@ class Form extends Component {
       cardRare,
       cardTrunfo,
       onInputChange,
+      isSaveButtonDisabled,
     } = this.props;
 
     return (
@@ -56,8 +57,6 @@ class Form extends Component {
               data-testid="attr1-input"
               value={ cardAttr1 }
               onChange={ onInputChange }
-              max="90"
-              min="0"
             />
           </label>
 
@@ -70,8 +69,6 @@ class Form extends Component {
               data-testid="attr2-input"
               value={ cardAttr2 }
               onChange={ onInputChange }
-              max="90"
-              min="0"
             />
           </label>
 
@@ -84,8 +81,6 @@ class Form extends Component {
               data-testid="attr3-input"
               value={ cardAttr3 }
               onChange={ onInputChange }
-              max="90"
-              min="0"
             />
           </label>
 
@@ -133,11 +128,12 @@ class Form extends Component {
           <button
             data-testid="save-button"
             type="submit"
-            // disabled={ isSaveButtonDisabled }
+            disabled={ isSaveButtonDisabled }
             // onClick={ onSaveButtonClick }
           >
             Salvar
           </button>
+          <p>{ isSaveButtonDisabled }</p>
         </form>
       </div>
     );
@@ -156,7 +152,7 @@ Form.propTypes = {
   // onSaveButtonClick: PropTypes.func.isRequired,
   cardTrunfo: PropTypes.string.isRequired,
   // hasTrunfo: PropTypes.func.isRequired,
-  // isSaveButtonDisabled: PropTypes.func.isRequired,
+  isSaveButtonDisabled: PropTypes.func.isRequired,
 };
 
 export default Form;

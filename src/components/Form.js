@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import '../css/form-style.css';
+
+import Atributos from './Atributos';
 
 class Form extends Component {
   render() {
     const {
       cardName,
       cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
       cardImage,
       cardRare,
       cardTrunfo,
+      onInputChange,
     } = this.props;
 
     return (
@@ -30,7 +31,7 @@ class Form extends Component {
               type="text"
               data-testid="name-input"
               value={ cardName }
-              onChange={ this.onInputChange }
+              onChange={ onInputChange }
             />
           </label>
 
@@ -41,45 +42,11 @@ class Form extends Component {
               name="cardDescription"
               data-testid="description-input"
               value={ cardDescription }
-              onChange={ this.onInputChange }
+              onChange={ onInputChange }
             />
           </label>
 
-          <label htmlFor="att1">
-            Atributo 1:
-            <input
-              id="att1"
-              name="cardAttr1"
-              type="number"
-              data-testid="attr1-input"
-              value={ cardAttr1 }
-              onChange={ this.onInputChange }
-            />
-          </label>
-
-          <label htmlFor="att2">
-            Atributo 2:
-            <input
-              id="att2"
-              name="cardAttr2"
-              type="number"
-              data-testid="attr2-input"
-              value={ cardAttr2 }
-              onChange={ this.onInputChange }
-            />
-          </label>
-
-          <label htmlFor="att3">
-            Atributo 3:
-            <input
-              id="att3"
-              name="cardAttr3"
-              type="number"
-              data-testid="attr3-input"
-              value={ cardAttr3 }
-              onChange={ this.onInputChange }
-            />
-          </label>
+          <Atributos />
 
           <label htmlFor="img">
             Imagem
@@ -89,7 +56,7 @@ class Form extends Component {
               type="text"
               data-testid="image-input"
               value={ cardImage }
-              onChange={ this.onInputChange }
+              onChange={ onInputChange }
             />
           </label>
 
@@ -100,17 +67,11 @@ class Form extends Component {
               name="cardRare"
               data-testid="rare-input"
               value={ cardRare }
-              onChange={ this.onInputChange }
+              onChange={ onInputChange }
             >
-              <option>
-                normal
-              </option>
-              <option>
-                raro
-              </option>
-              <option>
-                muito raro
-              </option>
+              <option> normal </option>
+              <option> raro </option>
+              <option> muito raro </option>
             </select>
           </label>
 
@@ -122,7 +83,7 @@ class Form extends Component {
                 type="checkbox"
                 data-testid="trunfo-input"
                 checked={ cardTrunfo }
-                onChange={ this.onInputChange }
+                onChange={ onInputChange }
               />
               Super Tryunfo
             </label>
@@ -145,16 +106,13 @@ class Form extends Component {
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  onSaveButtonClick: PropTypes.func.isRequired,
+  // onSaveButtonClick: PropTypes.func.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.func.isRequired,
-  isSaveButtonDisabled: PropTypes.func.isRequired,
+  // hasTrunfo: PropTypes.func.isRequired,
+  // isSaveButtonDisabled: PropTypes.func.isRequired,
 };
 
 export default Form;

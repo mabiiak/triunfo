@@ -9,19 +9,21 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '0',
-      cardAttr2: '0',
-      cardAttr3: '0',
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      hasTrunfo: '',
       newCard: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.testeInput = this.testeInput.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.testeTrunfo = this.testeTrunfo.bind(this);
   }
 
   handleChange({ target }) {
@@ -34,6 +36,7 @@ class App extends React.Component {
   }
 
   onSaveButtonClick(event) {
+    const { cardTrunfo } = this.state;
     event.preventDefault();
 
     this.setState((prevState) => ({
@@ -51,6 +54,8 @@ class App extends React.Component {
         isSaveButtonDisabled: true,
       },
     ));
+
+    if (cardTrunfo) this.testeTrunfo();
   }
 
   testeInput() {
@@ -83,6 +88,16 @@ class App extends React.Component {
     return false;
   }
 
+  testeTrunfo() {
+    const {
+      cardTrunfo,
+    } = this.state;
+
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    }
+  }
+
   render() {
     const {
       isSaveButtonDisabled,
@@ -100,6 +115,7 @@ class App extends React.Component {
 
         <Card
           { ...this.state }
+          teste={ this.testeTrunfo }
         />
       </div>
     );

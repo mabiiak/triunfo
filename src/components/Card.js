@@ -21,6 +21,7 @@ class Card extends Component {
           data-testid="image-card"
           src={ cardImage }
           alt={ cardName }
+          width="200px"
         />
 
         <p data-testid="description-card">

@@ -28,6 +28,7 @@ class App extends React.Component {
     this.testeInput = this.testeInput.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.testeTrunfo = this.testeTrunfo.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   handleChange({ target }) {
@@ -99,7 +100,21 @@ class App extends React.Component {
 
     if (cardTrunfo) {
       this.setState({ hasTrunfo: true });
+    } else {
+      this.setState({ hasTrunfo: false });
     }
+  }
+
+  deleteCard(event) {
+    const item = event.target.parentElement;
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: false });
+    } else {
+      this.setState({ hasTrunfo: false });
+    }
+
+    item.remove();
   }
 
   render() {
@@ -128,6 +143,7 @@ class App extends React.Component {
               <CardList
                 key={ card }
                 card={ card }
+                deleteButton={ this.deleteCard }
               />
             ))
           }

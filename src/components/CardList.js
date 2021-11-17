@@ -5,7 +5,10 @@ import '../css/card-style.css';
 
 class CardList extends Component {
   render() {
-    const { card } = this.props;
+    const {
+      card,
+      deleteButton,
+    } = this.props;
 
     return (
       <div className="cardzito">
@@ -37,6 +40,14 @@ class CardList extends Component {
 
         <p>{ card.cardRare }</p>
         { card.cardTrunfo ? <p>Super Trunfo</p> : <p>Não é o Trunfo</p>}
+
+        <button
+          data-testid="delete-button"
+          type="button"
+          onClick={ deleteButton }
+        >
+          Excluir
+        </button>
       </div>
     );
   }
@@ -44,6 +55,7 @@ class CardList extends Component {
 
 CardList.propTypes = {
   card: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteButton: PropTypes.func.isRequired,
 };
 
 export default CardList;

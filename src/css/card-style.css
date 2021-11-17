@@ -4,14 +4,12 @@
 }
 
 .cardzito {
-  display: flex;
   border: solid 1px black;
-  width: 280px;
-  margin: 5px;
-  justify-content: center;
+  display: flex;
   flex-direction: column;
-  /* align-items: center; */
-
+  justify-content: center;
+  margin: 5px;
+  width: 280px;
 }
 
 .cardzito h3, p {

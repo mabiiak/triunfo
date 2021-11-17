@@ -1,6 +1,10 @@
+/* eslint-disable react/jsx-key */
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import CardList from './components/CardList';
+
+import './css/card-style.css';
 
 class App extends React.Component {
   constructor() {
@@ -101,6 +105,7 @@ class App extends React.Component {
   render() {
     const {
       isSaveButtonDisabled,
+      newCard,
     } = this.state;
 
     return (
@@ -117,6 +122,16 @@ class App extends React.Component {
           { ...this.state }
           teste={ this.testeTrunfo }
         />
+        <div className="allCards">
+          {
+            Object.values(newCard).map((card) => (
+              <CardList
+                key={ card }
+                card={ card }
+              />
+            ))
+          }
+        </div>
       </div>
     );
   }

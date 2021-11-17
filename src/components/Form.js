@@ -42,7 +42,7 @@ class Form extends Component {
     );
 
     return (
-      <div>
+      <main>
         <h2>
           Criar nova carta
         </h2>
@@ -146,7 +146,7 @@ class Form extends Component {
           </button>
           <p>{ isSaveButtonDisabled }</p>
         </form>
-      </div>
+      </main>
     );
   }
 }

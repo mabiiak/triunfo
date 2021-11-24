@@ -15,14 +15,12 @@ h1, h2 {
 
 .view-card {
   display: flex;
-  /* border: 1px solid black; */
-  /* justify-content: flex-start; */
   width: 50%;
 }
 
 .view-card div {
-  margin-top: 55px;
   justify-content: center;
+  margin-top: 55px;
 }
 
 .form-style label {

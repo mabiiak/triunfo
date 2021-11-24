@@ -44,7 +44,7 @@ class CardList extends Component {
         <button
           data-testid="delete-button"
           type="button"
-          onClick={ deleteButton }
+          onClick={ () => deleteButton(card.cardName) }
         >
           Excluir
         </button>

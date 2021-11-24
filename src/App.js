@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
+import Filter from './components/Filter';
 import Form from './components/Form';
 import Card from './components/Card';
 import CardList from './components/CardList';
@@ -105,16 +106,18 @@ class App extends React.Component {
     }
   }
 
-  deleteCard(event) {
-    const item = event.target.parentElement;
-    const { cardTrunfo } = this.state;
-    if (cardTrunfo) {
-      this.setState({ hasTrunfo: false });
-    } else {
-      this.setState({ hasTrunfo: false });
-    }
+  deleteCard(cardName) {
+    const { newCard } = this.state;
 
-    item.remove();
+    const listCard = newCard.filter((card) => card.cardName !== cardName);
+
+    console.log(listCard);
+
+    this.setState({
+      newCard: listCard,
+    }, () => this.testeTrunfo());
+
+    // console.log(listCard);
   }
 
   render() {
@@ -126,22 +129,24 @@ class App extends React.Component {
     return (
       <div>
         <h1>Tryunfo</h1>
-        <Form
-          onInputChange={ this.handleChange }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onSaveButtonClick={ this.onSaveButtonClick }
-          { ...this.state }
-        />
-
-        <Card
-          { ...this.state }
-          teste={ this.testeTrunfo }
-        />
+        <div className="align">
+          <Form
+            onInputChange={ this.handleChange }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
+            onSaveButtonClick={ this.onSaveButtonClick }
+            { ...this.state }
+          />
+          <Card
+            { ...this.state }
+            teste={ this.testeTrunfo }
+          />
+        </div>
+        <Filter />
         <div className="allCards">
           {
             Object.values(newCard).map((card) => (
               <CardList
-                key={ card }
+                key={ card.cardName }
                 card={ card }
                 deleteButton={ this.deleteCard }
               />

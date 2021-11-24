@@ -1,3 +1,9 @@
+.align {
+  background-color: rgb(162, 197, 197);
+  display: flex;
+  justify-content: flex-start;
+}
+
 .allCards {
   display: flex;
   flex-wrap: wrap;

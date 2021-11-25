@@ -23,6 +23,7 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       hasTrunfo: '',
       newCard: '',
+      filterName: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,6 +31,8 @@ class App extends React.Component {
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.testeTrunfo = this.testeTrunfo.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this.filterNameChange = this.filterNameChange.bind(this);
+    this.filterName = this.filterName.bind(this);
   }
 
   handleChange({ target }) {
@@ -62,6 +65,29 @@ class App extends React.Component {
     ));
 
     if (cardTrunfo) this.testeTrunfo();
+  }
+
+  filterNameChange({ target }) {
+    const { value } = target;
+
+    this.setState({
+      filterName: value,
+    });
+  }
+
+  filterName() {
+    const { newCard, filterName } = this.state;
+
+    const name = Object(newCard).filter((card) => card.cardName.includes(filterName))
+      .map((card) => (
+        <div className="allCards" key={ Object(card).cardName }>
+          <CardList
+            card={ card }
+            deleteButton={ this.deleteCard }
+          />
+        </div>
+      ));
+    return name;
   }
 
   testeInput() {
@@ -109,7 +135,7 @@ class App extends React.Component {
   deleteCard(cardName) {
     const { newCard } = this.state;
 
-    const listCard = newCard.filter((card) => card.cardName !== cardName);
+    const listCard = Object(newCard).filter((card) => card.cardName !== cardName);
 
     console.log(listCard);
 
@@ -123,7 +149,8 @@ class App extends React.Component {
   render() {
     const {
       isSaveButtonDisabled,
-      newCard,
+      // newCard,
+      filterName,
     } = this.state;
 
     return (
@@ -141,18 +168,26 @@ class App extends React.Component {
             teste={ this.testeTrunfo }
           />
         </div>
-        <Filter />
-        <div className="allCards">
+
+        <Filter
+          { ...this.state }
+          onChange={ this.filterNameChange }
+        />
+
+        {
+          filterName.length > 0 && this.filterName()
+        }
+        {/* <div className="allCards">
           {
             Object.values(newCard).map((card) => (
               <CardList
-                key={ card.cardName }
+                key={ Object(card).cardName }
                 card={ card }
                 deleteButton={ this.deleteCard }
               />
             ))
           }
-        </div>
+        </div> */}
       </div>
     );
   }

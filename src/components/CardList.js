@@ -54,7 +54,7 @@ class CardList extends Component {
 }
 
 CardList.propTypes = {
-  card: PropTypes.arrayOf(PropTypes.object).isRequired,
+  card: PropTypes.shape().isRequired,
   deleteButton: PropTypes.func.isRequired,
 };
 

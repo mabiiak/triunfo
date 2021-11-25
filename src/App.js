@@ -24,6 +24,8 @@ class App extends React.Component {
       hasTrunfo: '',
       newCard: '',
       filterName: '',
+      filterRare: '',
+      click: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,6 +35,8 @@ class App extends React.Component {
     this.deleteCard = this.deleteCard.bind(this);
     this.filterNameChange = this.filterNameChange.bind(this);
     this.filterName = this.filterName.bind(this);
+    this.rareChange = this.rareChange.bind(this);
+    this.filterRare = this.filterRare.bind(this);
   }
 
   handleChange({ target }) {
@@ -77,7 +81,6 @@ class App extends React.Component {
 
   filterName() {
     const { newCard, filterName } = this.state;
-
     const name = Object(newCard).filter((card) => card.cardName.includes(filterName))
       .map((card) => (
         <div className="allCards" key={ Object(card).cardName }>
@@ -88,6 +91,64 @@ class App extends React.Component {
         </div>
       ));
     return name;
+  }
+
+  filterRare() {
+    const { newCard, filterRare } = this.state;
+    if (filterRare === 'todas') {
+      return (
+        Object(newCard).map((item) => (
+          <div className="allCards" key={ Object(item).cardName }>
+            <CardList
+              card={ item }
+              deleteButton={ this.deleteCard }
+            />
+          </div>
+        ))
+      );
+    }
+
+    if (filterRare === 'normal') {
+      return (
+        Object(newCard).filter((card) => card.cardRare === filterRare)
+          .map((normalCard) => (
+            <div className="allCards" key={ Object(normalCard).cardName }>
+              <CardList
+                card={ normalCard }
+                deleteButton={ this.deleteCard }
+              />
+            </div>
+          ))
+      );
+    }
+
+    if (filterRare === 'raro') {
+      return (
+        Object(newCard).filter((card) => card.cardRare === filterRare)
+          .map((rareCard) => (
+            <div className="allCards" key={ Object(rareCard).cardName }>
+              <CardList
+                card={ rareCard }
+                deleteButton={ this.deleteCard }
+              />
+            </div>
+          ))
+      );
+    }
+
+    if (filterRare === 'muito raro') {
+      return (
+        Object(newCard).filter((card) => card.cardRare === filterRare)
+          .map((superRareCard) => (
+            <div className="allCards" key={ Object(superRareCard).cardName }>
+              <CardList
+                card={ superRareCard }
+                deleteButton={ this.deleteCard }
+              />
+            </div>
+          ))
+      );
+    }
   }
 
   testeInput() {
@@ -146,13 +207,19 @@ class App extends React.Component {
     // console.log(listCard);
   }
 
+  rareChange({ target }) {
+    const { value } = target;
+    this.setState({
+      filterRare: value,
+    });
+  }
+
   render() {
     const {
       isSaveButtonDisabled,
-      // newCard,
       filterName,
+      filterRare,
     } = this.state;
-
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -172,25 +239,12 @@ class App extends React.Component {
         <Filter
           { ...this.state }
           onChange={ this.filterNameChange }
+          onSelect={ this.rareChange }
         />
-
-        {
-          filterName.length > 0 && this.filterName()
-        }
-        {/* <div className="allCards">
-          {
-            Object.values(newCard).map((card) => (
-              <CardList
-                key={ Object(card).cardName }
-                card={ card }
-                deleteButton={ this.deleteCard }
-              />
-            ))
-          }
-        </div> */}
+        { filterName.length > 0 && this.filterName() }
+        { filterRare !== '' && this.filterRare() }
       </div>
     );
   }
 }
-
 export default App;

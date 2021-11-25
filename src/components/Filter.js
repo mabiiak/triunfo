@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Filter extends Component {
   render() {
-    const { onChange } = this.props;
+    const { onChange, onSelect } = this.props;
     return (
       <div>
         <h2>Filtros de busca</h2>
@@ -13,10 +13,12 @@ class Filter extends Component {
           data-testid="name-filter"
           onChange={ onChange }
         />
-        <input
-          type="text"
-          placeholder="Raridade da carta"
-        />
+        <select data-testid="rare-filter" onChange={ onSelect }>
+          <option selected> todas </option>
+          <option> normal </option>
+          <option> raro </option>
+          <option> muito raro </option>
+        </select>
         <button
           id="buscador"
           type="submit"
@@ -31,6 +33,7 @@ class Filter extends Component {
 
 Filter.propTypes = {
   onChange: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
 };
 
 export default Filter;

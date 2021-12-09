@@ -1,58 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../css/layout.css';
 
-class Card extends React.Component {
+class Baralho extends React.Component {
   render() {
-    const {
-      cardName, cardDescription, cardImage, cardAttr1,
-      cardAttr2, cardAttr3, cardRare, cardTrunfo,
-    } = this.props;
+    const { carta } = this.props;
 
     return (
-      <div className="preview">
+      <div className="carta-pronta">
         <fieldset data-testid="name-card">
           <legend>Nome:</legend>
-          { cardName }
+          { carta.cardName }
         </fieldset>
 
         <img
           data-testid="image-card"
-          src={ cardImage }
-          alt={ cardName }
+          src={ carta.cardImage }
+          alt={ carta.cardName }
           width="190px"
         />
 
         <p data-testid="description-card">
-          { cardDescription }
+          { carta.cardDescription }
         </p>
 
         <fieldset data-testid="attr1-card">
           <legend>Carisma:</legend>
-          { cardAttr1 }
+          { carta.cardAttr1 }
         </fieldset>
 
         <fieldset data-testid="attr2-card">
           <legend>Sabedoria:</legend>
-          { cardAttr2 }
+          { carta.cardAttr2 }
         </fieldset>
 
         <fieldset data-testid="attr3-card">
           <legend>Destreza:</legend>
-          { cardAttr3 }
+          { carta.cardAttr3 }
         </fieldset>
 
         {
-          cardTrunfo && <p data-testid="trunfo-card"> Super Trunfo </p>
+          carta.cardTrunfo && <p data-testid="trunfo-card"> Super Trunfo </p>
         }
 
-        <p data-testid="rare-card">{ cardRare }</p>
+        <p data-testid="rare-card">{ carta.cardRare }</p>
 
       </div>
     );
   }
 }
 
-Card.propTypes = {
+Baralho.propTypes = {
+  carta: PropTypes.bool.isRequired,
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.string.isRequired,
@@ -63,4 +62,4 @@ Card.propTypes = {
   cardTrunfo: PropTypes.bool.isRequired,
 };
 
-export default Card;
+export default Baralho;

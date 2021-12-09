@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './components/Form';
+import Baralho from './components/Baralho';
 import Card from './components/Card';
 import './css/layout.css';
 
@@ -17,6 +18,7 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       baralho: [],
+      hasTrunfo: '',
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.validateButton = this.validateButton.bind(this);
@@ -49,6 +51,9 @@ class App extends React.Component {
         isSaveButtonDisabled: true,
       },
     ));
+
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) this.setState({ hasTrunfo: true });
   }
 
   validateButton() { // Nós testamos as condições em que o botão deve estar desabilitado, se o teste for com as condições em que ele é habilitado, logo que um critétio se cumpre ele habilita
@@ -70,7 +75,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { isSaveButtonDisabled } = this.state;
+    const { isSaveButtonDisabled, baralho } = this.state;
     return (
       <body>
         <header>
@@ -89,6 +94,14 @@ class App extends React.Component {
           />
 
           <Card { ...this.state } />
+
+          <div className="all-cards">
+            {
+              baralho.map((carta) => (
+                <Baralho carta={ carta } key={ carta.cardName } />
+              ))
+            }
+          </div>
         </main>
       </body>
     );

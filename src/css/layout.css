@@ -2,14 +2,21 @@
 
 * {
   font-family: MedievalSharp , cursive;
-  margin-left: 5px;
-  margin-top: 5px;
+  margin-left: 2px;
+  margin-top: 2px;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER ---------------------------------------------------------------- */
 header {
   border: solid 1px grey;
   display: flex;
   flex-direction: column;
+  height: 100px;
 }
 
 header .titleTwo {
@@ -29,13 +36,27 @@ header .titleOne {
   margin-right: auto;
 }
 
+/* ALINHAMENTO DO FORM E PRÉ-VIEW --------------------------------------- */
 main {
   background-color: rgb(196, 192, 181);
   display: flex;
   width: 500px;
 }
 
-.preview {
-  margin-left: 15px;
-  width: 200px;
+/* MOSTRAR CARTAS SALVAS ------------------------------------------------ */
+.all-cards {
+  border: solid 5px rgb(63, 64, 160);
+  display: flex;
+  flex-direction: row;
+  margin-left: 90px;
+}
+
+.carta-pronta {
+  flex-wrap: wrap;
+  width: 400px;
+}
+
+.carta-pronta fieldset, legend, p {
+  border-color: yellow;
+  color: black;
 }

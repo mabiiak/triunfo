@@ -5,17 +5,27 @@ import Personagens from './Personagens';
 
 class Livro extends React.Component {
   render() {
-    const { baralho, deleteButton, load } = this.props;
+    const { baralho, deleteButton, filterName } = this.props;
     return (
       <div className="all-cards">
         {
-          // se load for false exibe os cards
-          load === false
-            ? baralho.map((carta) => (
+          filterName !== '' // se for igual a true filtra por nome, se nao exibe todos
+            ? baralho.filter((carta) => carta.cardName.includes(filterName))
+              .map((card) => (
+                <div key={ card.cardName }>
+                  <Personagens carta={ card } />
+                  <button
+                    data-testid="delete-button"
+                    type="button"
+                    onClick={ () => deleteButton(card.cardName) }
+                  >
+                    Excluir
+                  </button>
+                </div>
+              ))
+            : baralho.map((carta) => (
               <div key={ carta.cardName }>
-                <Personagens
-                  carta={ carta }
-                />
+                <Personagens carta={ carta } />
 
                 <button
                   data-testid="delete-button"
@@ -26,7 +36,6 @@ class Livro extends React.Component {
                 </button>
               </div>
             ))
-            : (<p>Carregando...</p>)
         }
       </div>
     );
@@ -36,7 +45,7 @@ class Livro extends React.Component {
 Livro.propTypes = {
   baralho: PropTypes.string.isRequired,
   deleteButton: PropTypes.func.isRequired,
-  load: PropTypes.bool.isRequired,
+  filterName: PropTypes.string.isRequired,
 };
 
 export default Livro;

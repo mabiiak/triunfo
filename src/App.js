@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './components/Form';
+import Filtro from './components/Filtro';
 import Livro from './components/Livro';
 import Card from './components/Card';
 import './css/layout.css';
@@ -19,13 +20,15 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       baralho: [],
       hasTrunfo: '',
-      load: false,
+      filterName: '',
+      filterOn: false,
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.validateButton = this.validateButton.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.deleteButton = this.deleteButton.bind(this);
     this.testeTrunfo = this.testeTrunfo.bind(this);
+    this.filter = this.filter.bind(this);
   }
 
   onInputChange({ target }) {
@@ -41,7 +44,6 @@ class App extends React.Component {
       cardAttr3, cardRare, cardTrunfo } = this.state;
     event.preventDefault();
     this.setState((prevState) => ({
-
       baralho: [...prevState.baralho, {
         cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardRare, cardTrunfo,
       }],
@@ -95,6 +97,10 @@ class App extends React.Component {
     this.setState({ hasTrunfo: false });
   }
 
+  filter() {
+    this.setState({ filterOn: true });
+  }
+
   render() {
     const { isSaveButtonDisabled } = this.state;
     return (
@@ -115,6 +121,12 @@ class App extends React.Component {
           />
 
           <Card { ...this.state } />
+
+          <Filtro
+            onInputChange={ this.onInputChange }
+            filter={ this.filter }
+            { ...this.state }
+          />
 
           <Livro { ...this.state } deleteButton={ this.deleteButton } />
         </main>

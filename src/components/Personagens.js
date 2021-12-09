@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../css/layout.css';
 
-class Baralho extends React.Component {
+class Personagens extends React.Component {
   render() {
     const { carta } = this.props;
 
@@ -44,13 +44,12 @@ class Baralho extends React.Component {
         }
 
         <p data-testid="rare-card">{ carta.cardRare }</p>
-
       </div>
     );
   }
 }
 
-Baralho.propTypes = {
+Personagens.propTypes = {
   carta: PropTypes.bool.isRequired,
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
@@ -62,4 +61,4 @@ Baralho.propTypes = {
   cardTrunfo: PropTypes.bool.isRequired,
 };
 
-export default Baralho;
+export default Personagens;

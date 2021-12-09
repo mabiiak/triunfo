@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from './components/Form';
-import Baralho from './components/Baralho';
+import Livro from './components/Livro';
 import Card from './components/Card';
 import './css/layout.css';
 
@@ -19,10 +19,13 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       baralho: [],
       hasTrunfo: '',
+      load: false,
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.validateButton = this.validateButton.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.deleteButton = this.deleteButton.bind(this);
+    this.testeTrunfo = this.testeTrunfo.bind(this);
   }
 
   onInputChange({ target }) {
@@ -34,10 +37,14 @@ class App extends React.Component {
   }
 
   onSaveButtonClick(event) {
+    const { cardName, cardDescription, cardAttr1, cardAttr2,
+      cardAttr3, cardRare, cardTrunfo } = this.state;
     event.preventDefault();
-
     this.setState((prevState) => ({
-      baralho: [{ ...prevState }, ...prevState.baralho],
+
+      baralho: [...prevState.baralho, {
+        cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardRare, cardTrunfo,
+      }],
     }), () => this.setState(
       {
         cardName: '',
@@ -52,7 +59,6 @@ class App extends React.Component {
       },
     ));
 
-    const { cardTrunfo } = this.state;
     if (cardTrunfo) this.setState({ hasTrunfo: true });
   }
 
@@ -74,8 +80,23 @@ class App extends React.Component {
     return false;
   }
 
+  deleteButton(cardName) {
+    this.setState({ load: true });
+    const { baralho } = this.state;
+    const filtroRemovedor = baralho.filter((carta) => carta.cardName !== cardName);
+
+    this.setState({ baralho: filtroRemovedor }, () => this.testeTrunfo());
+    this.setState({ load: false });
+  }
+
+  testeTrunfo() {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) setState({ hasTrunfo: true });
+    this.setState({ hasTrunfo: false });
+  }
+
   render() {
-    const { isSaveButtonDisabled, baralho } = this.state;
+    const { isSaveButtonDisabled } = this.state;
     return (
       <body>
         <header>
@@ -95,13 +116,7 @@ class App extends React.Component {
 
           <Card { ...this.state } />
 
-          <div className="all-cards">
-            {
-              baralho.map((carta) => (
-                <Baralho carta={ carta } key={ carta.cardName } />
-              ))
-            }
-          </div>
+          <Livro { ...this.state } deleteButton={ this.deleteButton } />
         </main>
       </body>
     );

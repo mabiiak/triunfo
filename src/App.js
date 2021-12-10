@@ -22,6 +22,7 @@ class App extends React.Component {
       hasTrunfo: '',
       filterName: '',
       filterOn: false,
+      filterRare: '',
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.validateButton = this.validateButton.bind(this);

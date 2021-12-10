@@ -13,6 +13,17 @@ class Filtro extends React.Component {
           onChange={ onInputChange }
           name="filterName"
         />
+        <select
+          data-testid="rare-filter"
+          name="filterRare"
+          onChange={ onInputChange }
+        >
+          <option>todas</option>
+          <option>normal</option>
+          <option>raro</option>
+          <option>muito raro</option>
+        </select>
+
         <button
           type="button"
           onClick={ filter }

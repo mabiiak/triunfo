@@ -29,7 +29,9 @@ Neste projeto foi desenvolvido um jogo no estilo Super Trunfo! Ao utilizar essa 
 
 <details>
   <summary>
+    <h3>
       Antes de começar a desenvolver
+    </h3>
   </summary>
 
 1. Clone o repositório
@@ -57,12 +59,11 @@ Neste projeto foi desenvolvido um jogo no estilo Super Trunfo! Ao utilizar essa 
 
 <details>
   <summary>
-    <h2>
-      Antes de começar a desenvolver
-    </h2>
+    <h3>
+      Informações sobre o Super Trunfo
+    </h3>
   </summary>
 
-## Informações sobre o Super Trunfo
 O Super Trunfo é um jogo de cartas que ficou muito popular no Brasil entre as décadas de 80 e 90, mas que faz bastante sucesso até hoje. Suas regras são bastante simples, por isso ele é considerado um jogo fácil de jogar. Apesar de ter regras simples, cada baralho  de Super Trunfo pode ter um tema diferente, o que o torna um jogo bastante divertido.
 
 Originalmente, o jogo de Super Trunfo é formado por um baralho de 32 cartas. Cada carta representa um item relacionado ao tema do jogo. Em cada carta também existe uma lista com características daquele item e cada característica possui um valor numérico. 
@@ -97,7 +98,9 @@ O jogo de Super Trunfo pode ser feito com praticamente qualquer tema, mas tradic
 
   <details>
     <summary>
-      Bônus
+      <h3>
+        Bônus
+      </h3>
     </summary>
 
     ✅ 10. Crie o filtro pelo nome da carta
@@ -107,13 +110,11 @@ O jogo de Super Trunfo pode ser feito com praticamente qualquer tema, mas tradic
     ❌ 12. Crie o filtro de Super Trunfo
   </details>
 
-## Requisitos não avaliativos
-
   <details>
     <summary>
-      <h2>
+      <h3>
         Regras do Jogo
-      </h2>
+      </h3>
     </summary>
 
   Antes de iniciar o desenvolvimento, vamos relembrar como funciona o jogo: 
@@ -131,11 +132,11 @@ O jogo de Super Trunfo pode ser feito com praticamente qualquer tema, mas tradic
    4) Na ultima carta, ter um botão para recomeçar o jogo, embaralhando novamente.
 
 
-❌ 13. Iniciar o jogo
+    ❌ 13. Iniciar o jogo
 
-❌ 14. Criar botão Próxima Carta
+    ❌ 14. Criar botão Próxima Carta
 
-❌ 15. Recomeçar o jogo
+    ❌ 15. Recomeçar o jogo
 
 </details>
 
